@@ -6,6 +6,7 @@ const { JWT_SECRET } = require('../config');
 const SALT_ROUNDS = 10;
 
 const createUser = (req, res, next) => {
+  console.log(req.body);
   const {
     name, email, password,
   } = req.body;
@@ -15,6 +16,7 @@ const createUser = (req, res, next) => {
       name, email, password: hash,
     }))
     .then((newUser) => {
+      console.log(newUser);
       res.send({
         _id: newUser._id,
         name: newUser.name,

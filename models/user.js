@@ -5,11 +5,17 @@ const validator = require('validator');
 const AuthError = require('../errors/AuthError');
 
 const userSchema = new mongoose.Schema({
+  name:
+  {
+    type: String,
+    required: true,
+    minLength: 2,
+    maxLength: 30,
+  },
   email:
   {
     type: String,
     required: true,
-    trim: true,
     unique: true,
     validate: {
       validator: (email) => validator.isEmail(email),
@@ -22,13 +28,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     select: false,
   },
-  name:
-  {
-    type: String,
-    required: true,
-    minLength: 2,
-    maxLength: 30,
-  },
+
 });
 
 userSchema.statics.findUserByCredentials = function (email, password) {

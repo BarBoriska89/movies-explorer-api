@@ -20,11 +20,11 @@ const getCurrentUser = (req, res, next) => {
 
 const updateUser = (req, res, next) => {
   console.log(`на сервере в апдейтЮзер ${req.body}`);
-  const { name, about } = req.body;
-  console.log(name, about);
+  const { name, email } = req.body;
+  console.log(name, email);
   const userId = req.user._id;
 
-  User.findByIdAndUpdate(userId, { name, about }, { runValidators: true, new: true })
+  User.findByIdAndUpdate(userId, { name, email }, { runValidators: true, new: true })
     .then((user) => {
       console.log(user);
       if (!user) {
